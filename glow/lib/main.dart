@@ -4,37 +4,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:glow/resources.dart';
+import 'package:glow/ui/flyerList.dart';
 
 void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: true,
-      title: 'Hello Rectangle',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello Rectangle'),
-        ),
-        body: FlyerBody(),
-      ),
+      title: 'GLOW',
+      home: FlyerList(),
     ),
   );
-}
-
-class FlyerBody extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsets.all(8), child: GridView.count(
-      crossAxisCount: 2,
-      children: List.generate(flyers.length, (index)
-          {
-            return Padding(
-              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-              child: Card(
-                child: Image.asset(flyers[index].cover),
-              ),
-            );
-          })
-        )
-    );
-      }
 }

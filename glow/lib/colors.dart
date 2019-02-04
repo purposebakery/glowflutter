@@ -1,4 +1,5 @@
 import 'dart:ui';
 
-var cAcent = Color(0xfffbc02d);
-var cBackground = Color(0xffeeeeee);
+var colorAcent = Color(0xfffbc02d);
+var colorAcentSlash = Color(0x44fbc02d);
+var colorBackground = Color(0xffeeeeee);

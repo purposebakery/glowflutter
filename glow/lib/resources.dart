@@ -1,15 +1,16 @@
 
-import 'package:flutter/material.dart';
 import 'package:glow/flyer.dart';
 
-var flyers = [
+final Resources resources = new Resources._private();
+const AMOUNT = 33;
 
-  new Flyer("Bin ich gut genug?", "assets/flyer/p01/cover.png"),
-  new Flyer("Bin ich gut genug?", "assets/flyer/p02/cover.png"),
-  new Flyer("Bin ich gut genug?", "assets/flyer/p03/cover.png"),
-  new Flyer("Bin ich gut genug?", "assets/flyer/p04/cover.png"),
-  new Flyer("Bin ich gut genug?", "assets/flyer/p05/cover.png"),
-  new Flyer("Bin ich gut genug?", "assets/flyer/p06/cover.png"),
-  new Flyer("Bin ich gut genug?", "assets/flyer/p07/cover.png"),
-  new Flyer("Bin ich gut genug?", "assets/flyer/p08/cover.png"),
-];
+class Resources {
+  var flyers = new List<Flyer>(AMOUNT);
+  Resources._private() {
+    for (var i = 0; i < AMOUNT; ++i) {
+      var flyerId = "p" + ((i+1).toString().padLeft(2, "0"));
+      flyers[i] = new Flyer("Test", "assets/flyer/${flyerId}_cover.png", "assets/flyer/${flyerId}_content.html");
+    }
+  }
+
+}
