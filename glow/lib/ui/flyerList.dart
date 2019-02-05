@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:glow/colors.dart';
-import 'package:glow/resources.dart';
+import 'package:glow/ui/data/colors.dart';
+import 'package:glow/ui/data/resources.dart';
 import 'package:glow/ui/flyerDetail.dart';
 
 class FlyerList extends StatelessWidget {
@@ -14,13 +14,13 @@ class FlyerList extends StatelessWidget {
       body: GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 24,
-        children: List.generate(resources.flyers.length, (index) {
+        children: List.generate(resources.flyers.length, (flyerIndex) {
           return Center(
             child: Card(
                 elevation: 12,
                 child: Stack(
                   children: <Widget>[
-                    Image.asset(resources.flyers[index].cover),
+                    Image.asset(resources.flyers[flyerIndex].cover),
                     Positioned.fill(
                         child: new Material(
                             color: Colors.transparent,
@@ -30,7 +30,7 @@ class FlyerList extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => FlyerDetail(flyerIndex: index)),
+                                      builder: (context) => FlyerDetail(flyerIndex: flyerIndex)),
                                 );
                               },
                             )

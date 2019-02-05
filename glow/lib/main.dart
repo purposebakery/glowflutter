@@ -3,14 +3,14 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:glow/resources.dart';
+import 'package:glow/ui/data/resources.dart';
 import 'package:glow/ui/flyerList.dart';
 
 void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: true,
-      title: 'GLOW',
+      title: 'GLOW Test4',
       home: FlyerList(),
     ),
   );

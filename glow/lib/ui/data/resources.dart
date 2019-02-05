@@ -1,5 +1,5 @@
 
-import 'package:glow/flyer.dart';
+import 'package:glow/ui/data/model/flyer.dart';
 
 final Resources resources = new Resources._private();
 const AMOUNT = 33;
