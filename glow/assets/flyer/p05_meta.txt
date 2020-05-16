@@ -1,3 +1,0 @@
-title=Das Geschenk der Freunde
-title_html=Das <b>Geschenk</b> der <b>Freunde</b>
-url=http://glowonline.org/das-geschenk-der-freude

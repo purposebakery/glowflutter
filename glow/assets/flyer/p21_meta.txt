@@ -1,3 +1,0 @@
-title=Mehr als nur Religion
-title_html=Mehr als nur Religion
-url=http://glowonline.org/mehr-als-nur-religion

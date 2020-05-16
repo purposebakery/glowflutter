@@ -1,3 +1,0 @@
-title=Hacksaw Ridge
-title_html=<b>Hacksaw Ridge</p> Das Herz eines Helden
-url=http://glowonline.org/hacksaw-ridge/

@@ -1,16 +1,20 @@
 name: glow
-description: GLOW Giving Light to Our World
+description: Giving Light to Our World
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
-# Read more about versioning at semver.org.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -19,15 +23,20 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  webview_flutter: ^0.3.0
+  url_launcher: ^5.4.0
+  flutter_share_me: ^0.9.1
+  # json_annotation: ^0.0.0
+  fluttertoast: ^4.0.0
 
 dev_dependencies:
+  # build_runner: ^0.0.0
+  #  json_serializable: ^0.0.0
   flutter_test:
     sdk: flutter
 
 
 # For information on the generic Dart part of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
+# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
@@ -39,15 +48,53 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/flyer/
-    - assets/meta/
+   - assets/flyer/010/
+   - assets/flyer/020/
+   - assets/flyer/030/
+   - assets/flyer/040/
+   - assets/flyer/050/
+   - assets/flyer/060/
+   - assets/flyer/070/
+   - assets/flyer/080/
+   - assets/flyer/090/
+   - assets/flyer/100/
+   - assets/flyer/110/
+   - assets/flyer/120/
+   - assets/flyer/130/
+   - assets/flyer/140/
+   - assets/flyer/150/
+   - assets/flyer/160/
+   - assets/flyer/170/
+   - assets/flyer/180/
+   - assets/flyer/190/
+   - assets/flyer/200/
+   - assets/flyer/210/
+   - assets/flyer/220/
+   - assets/flyer/230/
+   - assets/flyer/240/
+   - assets/flyer/250/
+   - assets/flyer/260/
+   - assets/flyer/270/
+   - assets/flyer/280/
+   - assets/flyer/290/
+   - assets/flyer/300/
+   - assets/flyer/310/
+   - assets/flyer/320/
+   - assets/flyer/330/
+   - assets/flyer/340/
+   - background.png
+   - glow_logo_vertical_white.png
+   - baseline_public_black_24dp.png
+   - baseline_shopping_cart_black_24.png
+   - baseline_mail_black_24.png
+   - baseline_phone_black_24.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.io/assets-and-images/#resolution-aware.
+  # https://flutter.dev/assets-and-images/#resolution-aware.
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.io/assets-and-images/#from-packages
+  # https://flutter.dev/assets-and-images/#from-packages
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -67,4 +114,4 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.io/custom-fonts/#from-packages
+  # see https://flutter.dev/custom-fonts/#from-packages

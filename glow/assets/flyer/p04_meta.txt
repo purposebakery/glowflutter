@@ -1,3 +1,0 @@
-title=Das Geheimnis mentaler Gesundheit
-title_html=Das <b>Geheimnis</b> mentaler <b>Gesundheit</b>
-url=http://glowonline.org/das-geheimnis-mentaler-gesundheit/
