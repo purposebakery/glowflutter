@@ -48,46 +48,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/flyer/010/
-   - assets/flyer/020/
-   - assets/flyer/030/
-   - assets/flyer/040/
-   - assets/flyer/050/
-   - assets/flyer/060/
-   - assets/flyer/070/
-   - assets/flyer/080/
-   - assets/flyer/090/
-   - assets/flyer/100/
-   - assets/flyer/110/
-   - assets/flyer/120/
-   - assets/flyer/130/
-   - assets/flyer/140/
-   - assets/flyer/150/
-   - assets/flyer/160/
-   - assets/flyer/170/
-   - assets/flyer/180/
-   - assets/flyer/190/
-   - assets/flyer/200/
-   - assets/flyer/210/
-   - assets/flyer/220/
-   - assets/flyer/230/
-   - assets/flyer/240/
-   - assets/flyer/250/
-   - assets/flyer/260/
-   - assets/flyer/270/
-   - assets/flyer/280/
-   - assets/flyer/290/
-   - assets/flyer/300/
-   - assets/flyer/310/
-   - assets/flyer/320/
-   - assets/flyer/330/
-   - assets/flyer/340/
-   - background.png
-   - glow_logo_vertical_white.png
-   - baseline_public_black_24dp.png
-   - baseline_shopping_cart_black_24.png
-   - baseline_mail_black_24.png
-   - baseline_phone_black_24.png
+   - assets/flyer/
+   - assets/drawables/
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

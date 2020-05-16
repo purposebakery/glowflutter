@@ -1,4 +1,5 @@
 class Flyer {
+  String id = "";
   String title = "";
   String cover = "";
   String content = "";
@@ -6,5 +7,5 @@ class Flyer {
 
   Flyer.empty();
 
-  Flyer(this.title, this.cover, this.content, this.url);
+  Flyer(this.id, this.title, this.cover, this.content, this.url);
 }

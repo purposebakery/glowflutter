@@ -12,3 +12,6 @@ class Common {
   static const String email_uri = "mailto:deutschland@glowonline.org";
   static const String phone_uri = "tel:+4952514179517";
 }
+
+const String DA = "assets/drawables/";
+const String FLYER = "assets/flyer/";

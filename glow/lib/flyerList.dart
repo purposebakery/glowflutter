@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:glow/external.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:glow/flyerDetail.dart';
 import 'package:glow/resources.dart';
+import 'package:glow/common.dart';
 
 import 'common.dart';
 
@@ -14,54 +16,13 @@ class FlyerListPage extends StatefulWidget {
 }
 
 class FlyerListPageState extends State<FlyerListPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: createAppBar(),
       drawer: createDrawer(),
-//      body: GridView.count(
-//        crossAxisCount: 2,
-//        mainAxisSpacing: 24,
-//        children: List.generate(resources.flyers.length, (flyerIndex) {
-//          return Center(
-//            child: Card(
-//                elevation: 12,
-//                child: Stack(
-//                  children: <Widget>[
-//                    Image.asset(resources.flyers[flyerIndex].cover),
-//                    Positioned.fill(
-//                        child: new Material(
-//                            color: Colors.transparent,
-//                            child: new InkWell(
-//                              splashColor: colorAcentSlash,
-//                              onTap: () {
-//                                Navigator.push(
-//                                  context,
-//                                  MaterialPageRoute(
-//                                      builder: (context) => FlyerDetail(flyerIndex: flyerIndex)),
-//                                );
-//                              },
-//                            )
-//                        )
-//                    ),
-//                  ],
-//                )),
-//          );
-//        }),
-//      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: createBody()
     );
   }
 
@@ -97,11 +58,11 @@ class FlyerListPageState extends State<FlyerListPage> {
                             child: new InkWell(
                               splashColor: Common.accent,
                               onTap: () {
-//                                Navigator.push(
-//                                  context,
-//                                  MaterialPageRoute(
-//                                      builder: (context) => FlyerDetail(flyerIndex: flyerIndex)),
-//                                );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FlyerDetailPage(flyerId: resources.flyers[flyerIndex].id)),
+                                );
                               },
                             )
                         )
@@ -117,23 +78,23 @@ class FlyerListPageState extends State<FlyerListPage> {
     return Drawer(
         child: ListView(padding: EdgeInsets.zero, children: <Widget>[
           DrawerHeader(
-            child: Image.asset("glow_logo_vertical_white.png"),
+            child: Image.asset("${DA}glow_logo_vertical_white.png"),
             decoration: BoxDecoration(
                 color: Common.orange,
                 image: DecorationImage(
-                    image: AssetImage("background.png"), fit: BoxFit.cover)),
+                    image: AssetImage("${DA}background.png"), fit: BoxFit.cover)),
           ),
           ListTile(
               onTap: () {
                 External.launchURL(Common.homepage_url);
               },
-              leading: Image.asset("baseline_public_black_24dp.png"),
+              leading: Image.asset("${DA}baseline_public_black_24dp.png"),
               title: Text("Homepage")),
           ListTile(
               onTap: () {
                 External.launchURL(Common.shop_url);
               },
-              leading: Image.asset("baseline_shopping_cart_black_24.png"),
+              leading: Image.asset("${DA}baseline_shopping_cart_black_24.png"),
               title: Text("Shop besuchen")),
           Divider(color: Colors.grey),
           ListTile(
@@ -160,13 +121,13 @@ class FlyerListPageState extends State<FlyerListPage> {
                       onTap: () {
                         External.launchURL(Common.email_uri);
                       },
-                      leading: Image.asset("baseline_mail_black_24.png"),
+                      leading: Image.asset("${DA}baseline_mail_black_24.png"),
                       title: Text("E-Mail")),
                   ListTile(
                       onTap: () {
                         External.launchURL(Common.phone_uri);
                       },
-                      leading: Image.asset("baseline_phone_black_24.png"),
+                      leading: Image.asset("${DA}baseline_phone_black_24.png"),
                       title: Text("Telefon")),
                 ],
               )

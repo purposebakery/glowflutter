@@ -1,4 +1,5 @@
 import 'package:glow/flyer.dart';
+import 'package:glow/common.dart';
 
 final Resources resources = new Resources();
 
@@ -14,15 +15,16 @@ class Resources {
   var flyers = new List<Flyer>();
 
   void init() {
-    flyerIndex.forEach((index) {
+    flyerIds.forEach((id) {
       var flyer = Flyer.empty();
-      flyer.content = "assets/flyer/$index/020content.html";
-      flyer.cover = "assets/flyer/$index/010cover.png";
+      flyer.id = id;
+      flyer.content = "$FLYER${id}content.html";
+      flyer.cover = "$FLYER${id}cover.png";
       flyers.add(flyer);
     });
   }
 
-  var flyerIndex = [
+  var flyerIds = [
     "010",
     "020",
     "030",
