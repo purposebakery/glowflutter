@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:glow/flyer.dart';
 import 'package:glow/common.dart';
 
@@ -13,6 +15,7 @@ class Resources {
   Resources._internal();
 
   var flyers = new List<Flyer>();
+  var flyerMap = new HashMap<String, Flyer>();
 
   void init() {
     flyerIds.forEach((id) {
@@ -21,6 +24,7 @@ class Resources {
       flyer.content = "$FLYER${id}content.html";
       flyer.cover = "$FLYER${id}cover.png";
       flyers.add(flyer);
+      flyerMap[id] = flyer;
     });
   }
 

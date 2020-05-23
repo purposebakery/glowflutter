@@ -15,3 +15,5 @@ class Common {
 
 const String DA = "assets/drawables/";
 const String FLYER = "assets/flyer/";
+
+const double SPACE_1 = 16.0;
