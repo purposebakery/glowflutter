@@ -8,6 +8,7 @@ import 'package:glow/external.dart';
 import 'package:glow/flyer.dart';
 import 'package:glow/resources.dart';
 import 'package:html/dom.dart' as dom;
+
 import 'common.dart';
 
 class FlyerDetailPage extends StatefulWidget {
@@ -34,10 +35,10 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
       title: Text(flyer.title),
       actions: <Widget>[
         IconButton(
-          icon: const Icon(Icons.share),
+          icon: Icon(IconsDyn.share),
           tooltip: 'Share',
           onPressed: () {
-            Fluttertoast.showToast(msg: "${widget.flyerId}");
+            External.launchURL(flyer.url);
           },
         )
       ],
@@ -64,11 +65,12 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   Widget getUiForLoaded(String html) {
     return SingleChildScrollView(
-        child: Html(
-      data: html,
-      customRender: getCustomRender(),
-      onLinkTap: (link) => External.launchURL(link),
-    ));
+        child: Padding(padding: EdgeInsets.all(16), child: Html(
+          data: html,
+          customRender: getCustomRender(),
+          onLinkTap: (link) => External.launchURL(link),
+        ))
+    );
   }
 
   Map<String, CustomRender> getCustomRender() {
@@ -81,37 +83,6 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
       Widget parsedChild,
       Map<String, String> attributes,
       dom.Element element) {
-        return new Image.asset("$FLYER${flyer.id}${attributes["src"]}");
+        return Padding(padding: EdgeInsets.all(24),child: new Image.asset("$FLYER${flyer.id}${attributes["src"]}"));
   }
-}
-
-// create full screen scrollable html widget
-Widget getUiForLoaded(String html) {
-  return Padding(
-      padding: EdgeInsets.all(60),
-   child: SingleChildScrollView(
-       child: Html(
-           data: html,
-           customRender: getCustomRender()
-       )
-   )
-  );
-}
-
-Map<String, CustomRender> getCustomRender() {
-  var customRender = HashMap<String, CustomRender>();
-  customRender["img"] = getImageCustomRender;
-  return customRender;
-}
-
-// create customRender for asset images
-Widget getImageCustomRender(RenderContext context,
-    Widget parsedChild,
-    Map<String, String> attributes,
-    dom.Element element) {
-  return Padding(
-    padding: EdgeInsets.all(100),
-    child: Image.asset("assets/drawables/${attributes["src"]}")
-  );
-  return new Image.asset("assets/drawables/${attributes["src"]}");
 }

@@ -3,7 +3,6 @@ import 'package:glow/external.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:glow/flyerDetail.dart';
 import 'package:glow/resources.dart';
-import 'package:glow/common.dart';
 
 import 'common.dart';
 
@@ -28,16 +27,7 @@ class FlyerListPageState extends State<FlyerListPage> {
 
   AppBar createAppBar() {
     return AppBar(
-      title: Text(widget.title),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.share),
-          tooltip: 'Share',
-          onPressed: () {
-            Fluttertoast.showToast(msg: "This is Center Short Toast");
-          },
-        )
-      ],
+      title: Text(widget.title)
     );
   }
 

@@ -1,7 +1,11 @@
 import 'dart:collection';
+import 'dart:convert';
 
 import 'package:glow/flyer.dart';
 import 'package:glow/common.dart';
+import 'package:glow/utils.dart';
+
+import 'flyerMeta.dart';
 
 final Resources resources = new Resources();
 
@@ -18,14 +22,27 @@ class Resources {
   var flyerMap = new HashMap<String, Flyer>();
 
   void init() {
+    flyers.clear();
+    flyerMap.clear();
+
     flyerIds.forEach((id) {
       var flyer = Flyer.empty();
       flyer.id = id;
       flyer.content = "$FLYER${id}content.html";
       flyer.cover = "$FLYER${id}cover.png";
+
+      getFileData("$FLYER${id}meta.json").then((value) => parseJson(value, flyer));
+
       flyers.add(flyer);
       flyerMap[id] = flyer;
     });
+  }
+
+  parseJson(String jsonData, Flyer flyer) {
+    var parsedJson = json.decode(jsonData);
+    var meta = FlyerMeta(parsedJson);
+    flyer.title = meta.title;
+    flyer.url = meta.url;
   }
 
   var flyerIds = [
