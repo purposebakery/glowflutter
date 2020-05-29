@@ -33,9 +33,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+# flutter pub run flutter_launcher_icons:main
 flutter_icons:
-  image_path_ios: 'assets/icon.png'
-  image_path_android: 'assets/icon.png'
+  image_path_ios: 'store/icon.png'
+  image_path_android: 'store/icon.png'
   android: true
   ios: true
 

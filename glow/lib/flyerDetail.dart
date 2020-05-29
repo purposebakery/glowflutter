@@ -24,6 +24,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   final Flyer flyer;
   Html html;
   var top = 0.0;
+  static const double BANNER_HEIGHT = 350;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +76,8 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
           new Positioned(
             top: top,
             child: new ConstrainedBox(
-                constraints: new BoxConstraints(maxHeight: 350.0, minWidth: MediaQuery.of(context).size.width),
-                child: new Image.asset("${flyer.cover}", fit: BoxFit.fitWidth),
+                constraints: new BoxConstraints(maxHeight: getBannerHeight()),
+                child: new Image.asset("${flyer.cover}", fit: BoxFit.fill),
               )
           ),
           // The scroll view
@@ -91,20 +92,24 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
         child: Column(children: [
       Divider(
         color: Colors.transparent,
-        height: 200,
+        height: getBannerHeight(),
       ),
       getFlyerText(html)
     ]));
+  }
+
+  double getBannerHeight() {
+    return MediaQuery.of(context).size.height;
   }
 
   Widget getFlyerText(String html) {
     return Container(
       decoration: BoxDecoration(
         //borderRadius: BorderRadius.circular(8.0),
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey,
+            color: Colors.black,
             blurRadius: 2.0,
             spreadRadius: 2.0,
             offset: Offset(0.0, 2.0), // shadow direction: bottom right

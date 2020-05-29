@@ -46,7 +46,7 @@ class FlyerListPageState extends State<FlyerListPage> {
                         child: new Material(
                             color: Colors.transparent,
                             child: new InkWell(
-                              splashColor: Common.accent,
+                              splashColor: Common.primary,
                               onTap: () {
                                 Navigator.push(
                                   context,
@@ -70,21 +70,20 @@ class FlyerListPageState extends State<FlyerListPage> {
           DrawerHeader(
             child: Image.asset("${DA}glow_logo_vertical_white.png"),
             decoration: BoxDecoration(
-                color: Common.orange,
-                image: DecorationImage(
-                    image: AssetImage("${DA}background.png"), fit: BoxFit.cover)),
+              color: Common.primary
+            )
           ),
           ListTile(
               onTap: () {
                 External.launchURL(Common.homepage_url);
               },
-              leading: Image.asset("${DA}baseline_public_black_24dp.png"),
+              leading: Icon(IconsDyn.home),
               title: Text("Homepage")),
           ListTile(
               onTap: () {
                 External.launchURL(Common.shop_url);
               },
-              leading: Image.asset("${DA}baseline_shopping_cart_black_24.png"),
+              leading: Icon(IconsDyn.shop),
               title: Text("Shop besuchen")),
           Divider(color: Colors.grey),
           ListTile(
@@ -111,13 +110,13 @@ class FlyerListPageState extends State<FlyerListPage> {
                       onTap: () {
                         External.launchURL(Common.email_uri);
                       },
-                      leading: Image.asset("${DA}baseline_mail_black_24.png"),
+                      leading: Icon(IconsDyn.mail),
                       title: Text("E-Mail")),
                   ListTile(
                       onTap: () {
                         External.launchURL(Common.phone_uri);
                       },
-                      leading: Image.asset("${DA}baseline_phone_black_24.png"),
+                      leading: Icon(IconsDyn.phone),
                       title: Text("Telefon")),
                 ],
               )
