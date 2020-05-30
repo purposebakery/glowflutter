@@ -50,7 +50,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
     return FutureBuilder<String>(
         future: flyer.loadContent(),
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data != null) {
             return getUiForLoaded(snapshot.data);
           } else {
             return getUiForEmpty();
@@ -63,67 +63,27 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   }
 
   Widget getUiForLoaded(String html) {
-    return new NotificationListener(
-      onNotification: (v) {
-        if (v is ScrollUpdateNotification) {
-          setState(() => top -= v.scrollDelta / 2);
-        }
-        return true;
-      },
-      child: new Stack(
-        children: <Widget>[
-          //The background
-          new Positioned(
-            top: top,
-            child: new ConstrainedBox(
-                constraints: new BoxConstraints(maxHeight: getBannerHeight()),
-                child: new Image.asset("${flyer.cover}", fit: BoxFit.fill),
-              )
-          ),
-          // The scroll view
-          getContent(html)
-        ],
-      ),
-    );
+    return getContent(html);
+
   }
 
   Widget getContent(String html) {
     return SingleChildScrollView(
-        child: Column(children: [
-      Divider(
-        color: Colors.transparent,
-        height: getBannerHeight(),
-      ),
-      getFlyerText(html)
-    ]));
+        child: getFlyerText(html));
   }
 
   double getBannerHeight() {
-    return MediaQuery.of(context).size.height;
+    return MediaQuery.of(context).size.height - 200;
   }
 
   Widget getFlyerText(String html) {
-    return Container(
-      decoration: BoxDecoration(
-        //borderRadius: BorderRadius.circular(8.0),
-        color: Theme.of(context).backgroundColor,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            blurRadius: 2.0,
-            spreadRadius: 2.0,
-            offset: Offset(0.0, 2.0), // shadow direction: bottom right
-          )
-        ],
-      ),
-      child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Html(
-            data: html,
-            customRender: getCustomRender(),
-            onLinkTap: (link) => External.launchURL(link),
-          )),
-    );
+    return Padding(
+        padding: EdgeInsets.all(16),
+        child: Html(
+          data: html,
+          customRender: getCustomRender(),
+          onLinkTap: (link) => External.launchURL(link),
+        ));
   }
 
   Map<String, CustomRender> getCustomRender() {

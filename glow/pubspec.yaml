@@ -25,8 +25,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   url_launcher: ^5.4.0
   flutter_share_me: ^0.9.1
-  fluttertoast: ^4.0.0
   flutter_html: ^1.0.0
+  fluttertoast: ^4.0.0
 
 dev_dependencies:
   flutter_launcher_icons:

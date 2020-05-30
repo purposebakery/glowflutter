@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:glow/external.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:glow/flyerDetail.dart';
 import 'package:glow/resources.dart';
 
@@ -51,7 +50,8 @@ class FlyerListPageState extends State<FlyerListPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => FlyerDetailPage(flyerId: resources.flyers[flyerIndex].id)),
+                                      builder: (context) => FlyerDetailPage(flyerId: resources.flyers[flyerIndex].id)
+                                  ),
                                 );
                               },
                             )
@@ -66,7 +66,7 @@ class FlyerListPageState extends State<FlyerListPage> {
 
   Drawer createDrawer() {
     return Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+        child: ListView(padding: EdgeInsets.zero,children: <Widget>[
           DrawerHeader(
             child: Image.asset("${DA}glow_logo_vertical_white.png"),
             decoration: BoxDecoration(
