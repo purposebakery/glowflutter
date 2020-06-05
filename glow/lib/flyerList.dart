@@ -31,10 +31,12 @@ class FlyerListPageState extends State<FlyerListPage> {
   }
 
   Widget createBody() {
+    print("createBody");
     return GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 24,
         children: List.generate(Resources().flyers.length, (flyerIndex) {
+          print("createBody - List.generate");
           return Center(
             child: Card(
                 elevation: 12,
@@ -65,6 +67,7 @@ class FlyerListPageState extends State<FlyerListPage> {
   }
 
   Drawer createDrawer() {
+    print("createDrawer");
     return Drawer(
         child: ListView(padding: EdgeInsets.zero,children: <Widget>[
           DrawerHeader(

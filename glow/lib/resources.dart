@@ -22,6 +22,7 @@ class Resources {
   var flyerMap = new HashMap<String, Flyer>();
 
   void init() {
+    print("Resources.init");
     flyers.clear();
     flyerMap.clear();
 
@@ -39,6 +40,7 @@ class Resources {
   }
 
   parseJson(String jsonData, Flyer flyer) {
+    print("Resources.parseJson");
     var parsedJson = json.decode(jsonData);
     var meta = FlyerMeta(parsedJson);
     flyer.title = meta.title;
@@ -72,7 +74,7 @@ class Resources {
     "240",
     "250",
     "260",
-    "270",
+    //"270", // Twilight
     "280",
     "290",
     "300",

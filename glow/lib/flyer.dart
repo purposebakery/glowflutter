@@ -12,7 +12,7 @@ class Flyer {
   Flyer(this.id, this.title, this.cover, this.content, this.url);
 
   Future<String> loadContent() {
-    print("loading $content");
+    print("Flyer.loadContent");
     return getFileData(content);
   }
 }

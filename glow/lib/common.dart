@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Common {
-
   static const Color primary = Color(0xFF143945);
 
   static const String homepage_url = "https://glowdeutschland.de";

@@ -9,7 +9,7 @@ class External{
       await launch(url);
     } else {
       Fluttertoast.showToast(
-          msg: "Konnte $url nicht öffnen. Fehlt die app dafür?",
+          msg: "Konnte $url nicht öffnen. Fehlt die App dafür?",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.CENTER,
           backgroundColor: Colors.black87,
@@ -26,7 +26,7 @@ class External{
   static checkShareResult(dynamic value) {
     if (value == "false") {
       Fluttertoast.showToast(
-          msg: "Konnte text nicht teilen. Fehlt die app dafür?",
+          msg: "Konnte text nicht teilen. Fehlt die App dafür?",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.CENTER,
           backgroundColor: Colors.black87,
