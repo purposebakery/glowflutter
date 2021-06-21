@@ -1,11 +1,11 @@
 import 'dart:collection';
 import 'dart:convert';
 
-import 'package:glow/flyer.dart';
-import 'package:glow/common.dart';
-import 'package:glow/utils.dart';
+import 'package:glow/Flyer.dart';
+import 'package:glow/Common.dart';
+import 'package:glow/Utils.dart';
 
-import 'flyerMeta.dart';
+import 'FlyerMeta.dart';
 
 final Resources resources = new Resources();
 
@@ -18,7 +18,7 @@ class Resources {
 
   Resources._internal();
 
-  var flyers = new List<Flyer>();
+  var flyers = new List.empty(growable: true);
   var flyerMap = new HashMap<String, Flyer>();
 
   void init() {

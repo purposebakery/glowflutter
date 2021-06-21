@@ -1,4 +1,4 @@
-import 'package:glow/utils.dart';
+import 'package:glow/Utils.dart';
 
 class Flyer {
   String id = "";
@@ -12,7 +12,6 @@ class Flyer {
   Flyer(this.id, this.title, this.cover, this.content, this.url);
 
   Future<String> loadContent() {
-    print("Flyer.loadContent");
     return getFileData(content);
   }
 }

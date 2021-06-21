@@ -4,7 +4,11 @@ import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class External{
-  static launchURL(String url) async {
+  static launchURL(String? url) async {
+    if (url == null) {
+      return;
+    }
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {

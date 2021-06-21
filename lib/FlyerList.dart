@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:glow/external.dart';
-import 'package:glow/flyerDetail.dart';
-import 'package:glow/resources.dart';
+import 'package:glow/External.dart';
+import 'package:glow/FlyerDetail.dart';
+import 'package:glow/Resources.dart';
 
-import 'common.dart';
+import 'Common.dart';
 
 class FlyerListPage extends StatefulWidget {
-  FlyerListPage({Key key, this.title}) : super(key: key);
-  final String title;
+  FlyerListPage({Key? key}) : super(key: key);
 
   @override
   FlyerListPageState createState() => FlyerListPageState();
@@ -26,17 +25,15 @@ class FlyerListPageState extends State<FlyerListPage> {
 
   AppBar createAppBar() {
     return AppBar(
-      title: Text(widget.title)
+      title: Text("Glow")
     );
   }
 
   Widget createBody() {
-    print("createBody");
     return GridView.count(
         crossAxisCount: 2,
         mainAxisSpacing: 24,
         children: List.generate(Resources().flyers.length, (flyerIndex) {
-          print("createBody - List.generate");
           return Center(
             child: Card(
                 elevation: 12,
@@ -52,7 +49,7 @@ class FlyerListPageState extends State<FlyerListPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => FlyerDetailPage(flyerId: resources.flyers[flyerIndex].id)
+                                      builder: (context) => FlyerDetailPage(resources.flyers[flyerIndex].id)
                                   ),
                                 );
                               },
@@ -67,7 +64,6 @@ class FlyerListPageState extends State<FlyerListPage> {
   }
 
   Drawer createDrawer() {
-    print("createDrawer");
     return Drawer(
         child: ListView(padding: EdgeInsets.zero,children: <Widget>[
           DrawerHeader(
@@ -87,14 +83,15 @@ class FlyerListPageState extends State<FlyerListPage> {
                 External.launchURL(Common.shop_url);
               },
               leading: Icon(IconsDyn.shop),
-              title: Text("Shop besuchen")),
+              title: Text("Shop")),
           Divider(color: Colors.grey),
+          /*
           ListTile(
               onTap: () {
                 External.shareText(Common.app_url);
               },
               title: Text("App teilen")
-          ),
+          ),*/
           ListTile(
               onTap: () {
                 showContact(context);
