@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:glow/Resources.dart';
+import 'package:glow/model/Resources.dart';
+
 import 'Common.dart';
-import 'FlyerList.dart';
+import 'pages/FlyerList.dart';
 
 class App extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     Resources().init();
 
     return MaterialApp(
       title: 'Glow',
-      theme: ThemeData(
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-          primaryColor: Common.primary
-      ),
+      theme: ThemeData(brightness: Brightness.light, backgroundColor: Colors.white, primaryColor: CommonColors.primary),
       darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          backgroundColor: Colors.grey.shade800,
-          primaryColor: Common.primary
-      ),
+          brightness: Brightness.dark, backgroundColor: Colors.grey.shade800, primaryColor: CommonColors.primary),
       home: FlyerListPage(),
     );
   }

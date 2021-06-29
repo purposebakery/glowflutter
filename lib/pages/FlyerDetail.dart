@@ -3,12 +3,12 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/html_parser.dart';
-import 'package:glow/External.dart';
-import 'package:glow/Flyer.dart';
-import 'package:glow/Resources.dart';
+import 'package:glow/model/Flyer.dart';
+import 'package:glow/model/Resources.dart';
+import 'package:glow/utils/External.dart';
 import 'package:html/dom.dart' as dom;
 
-import 'Common.dart';
+import '../Common.dart';
 
 class FlyerDetailPage extends StatefulWidget {
   FlyerDetailPage(this.flyerId) : super(key: new ValueKey(flyerId));
@@ -35,7 +35,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
       title: Text(flyer.title),
       actions: <Widget>[
         IconButton(
-          icon: Icon(IconsDyn.share),
+          icon: Icon(CommonIconsDyn.share),
           tooltip: 'Share',
           onPressed: () {
             External.shareText(flyer.url);
@@ -99,6 +99,6 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
     Map<String, String> attributes,
     dom.Element? element,
   ) {
-    return Padding(padding: EdgeInsets.all(24), child: new Image.asset("$FLYER${flyer.id}${attributes["src"]}"));
+    return Padding(padding: EdgeInsets.all(24), child: new Image.asset("${CommonPaths.FLYER}${flyer.id}${attributes["src"]}"));
   }
 }

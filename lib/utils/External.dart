@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class External{
+class External {
   static launchURL(String? url) async {
     if (url == null) {
       return;
@@ -18,8 +18,7 @@ class External{
           gravity: ToastGravity.CENTER,
           backgroundColor: Colors.black87,
           textColor: Colors.white,
-          timeInSecForIosWeb: 2
-      );
+          timeInSecForIosWeb: 2);
     }
   }
 
@@ -35,9 +34,7 @@ class External{
           gravity: ToastGravity.CENTER,
           backgroundColor: Colors.black87,
           textColor: Colors.white,
-          timeInSecForIosWeb: 2
-      );
+          timeInSecForIosWeb: 2);
     }
   }
-
 }

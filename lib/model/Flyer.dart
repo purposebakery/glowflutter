@@ -1,4 +1,4 @@
-import 'package:glow/Utils.dart';
+import 'package:glow/utils/Utils.dart';
 
 class Flyer {
   String id = "";
