@@ -24,7 +24,8 @@ class FlyerListPageState extends State<FlyerListPage> {
   }
 
   AppBar createAppBar() {
-    return AppBar(
+    return AppBar( // status bar color
+        brightness: Brightness.dark,
       title: Text("Glow")
     );
   }
@@ -65,7 +66,9 @@ class FlyerListPageState extends State<FlyerListPage> {
 
   Drawer createDrawer() {
     return Drawer(
-        child: ListView(padding: EdgeInsets.zero,children: <Widget>[
+        child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
           DrawerHeader(
             child: Image.asset("${DA}glow_logo_vertical_white.png"),
             decoration: BoxDecoration(
@@ -76,13 +79,13 @@ class FlyerListPageState extends State<FlyerListPage> {
               onTap: () {
                 External.launchURL(Common.homepage_url);
               },
-              leading: Icon(IconsDyn.home),
+              leading: Icon(IconsDyn.home, color: Common.primary),
               title: Text("Homepage")),
           ListTile(
               onTap: () {
                 External.launchURL(Common.shop_url);
               },
-              leading: Icon(IconsDyn.shop),
+              leading: Icon(IconsDyn.shop, color: Common.primary),
               title: Text("Shop")),
           Divider(color: Colors.grey),
           /*
@@ -110,13 +113,13 @@ class FlyerListPageState extends State<FlyerListPage> {
                       onTap: () {
                         External.launchURL(Common.email_uri);
                       },
-                      leading: Icon(IconsDyn.mail),
+                      leading: Icon(IconsDyn.mail, color: Common.primary),
                       title: Text("E-Mail")),
                   ListTile(
                       onTap: () {
                         External.launchURL(Common.phone_uri);
                       },
-                      leading: Icon(IconsDyn.phone),
+                      leading: Icon(IconsDyn.phone, color: Common.primary),
                       title: Text("Telefon")),
                 ],
               )
