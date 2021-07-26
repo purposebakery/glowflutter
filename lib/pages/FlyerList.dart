@@ -40,7 +40,7 @@ class FlyerListPageState extends State<FlyerListPage> {
                       child: new Material(
                           color: Colors.transparent,
                           child: new InkWell(
-                            splashColor: CommonColors.primary,
+                            splashColor: CommonColors.primary.withAlpha(150),
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -75,13 +75,6 @@ class FlyerListPageState extends State<FlyerListPage> {
           leading: Icon(CommonIconsDyn.shop, color: CommonColors.primary),
           title: Text("Shop")),
       Divider(color: Colors.grey),
-      /*
-          ListTile(
-              onTap: () {
-                External.shareText(Common.app_url);
-              },
-              title: Text("App teilen")
-          ),*/
       ListTile(
           onTap: () {
             showContact(context);

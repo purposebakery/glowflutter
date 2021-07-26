@@ -26,27 +26,49 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: createAppBar(), body: createBody());
-  }
-
-  AppBar createAppBar() {
-    return AppBar(
-      brightness: Brightness.dark,
-      title: Text(flyer.title),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(CommonIconsDyn.share),
-          tooltip: 'Share',
-          onPressed: () {
-            External.shareText(flyer.url);
-          },
+    return Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            createAppBar(),
+            createContent()
+          ],
         )
-      ],
     );
   }
 
-  Widget createBody() {
-    return FutureBuilder<String>(
+  Widget createAppBar() {
+    return SliverAppBar(
+      brightness: Brightness.dark,
+      pinned: true,
+      expandedHeight: 160.0,
+      flexibleSpace: FlexibleSpaceBar(
+        title: createAppBarTitle(),
+        background: createAppBarBackground(),
+      ),
+    );
+  }
+
+  Widget createAppBarTitle() {
+    var title = flyer.titleShort;
+    return Padding(
+        padding: EdgeInsets.only(left : CommonSpace.SPACE_1),
+        child: Text(title, style: TextStyle(fontSize: 16))
+    );
+  }
+
+  Widget createAppBarBackground() {
+    var cover = flyer.cover;
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(
+        Colors.grey.withAlpha(150),
+        BlendMode.dstATop,
+      ),
+      child: Image.asset(cover, fit: BoxFit.fitWidth),
+    );
+  }
+
+  Widget createContent() {
+    return SliverToBoxAdapter(child:  FutureBuilder<String>(
         future: flyer.loadContent(),
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           if (snapshot.hasData && snapshot.data != null) {
@@ -54,7 +76,8 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
           } else {
             return getUiForEmpty();
           }
-        });
+        })
+      );
   }
 
   Widget getUiForEmpty() {
@@ -67,10 +90,6 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   Widget getContent(String html) {
     return SingleChildScrollView(child: getFlyerText(html));
-  }
-
-  double getBannerHeight() {
-    return MediaQuery.of(context).size.height - 200;
   }
 
   Widget getFlyerText(String html) {

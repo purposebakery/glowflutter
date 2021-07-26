@@ -12,8 +12,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Glow',
       theme: ThemeData(brightness: Brightness.light, backgroundColor: Colors.white, primaryColor: CommonColors.primary),
-      darkTheme: ThemeData(
-          brightness: Brightness.dark, backgroundColor: Colors.grey.shade800, primaryColor: CommonColors.primary),
+      darkTheme: ThemeData(brightness: Brightness.dark, backgroundColor: Colors.grey.shade800, primaryColor: CommonColors.primary),
       home: FlyerListPage(),
     );
   }

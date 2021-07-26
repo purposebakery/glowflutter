@@ -42,6 +42,7 @@ class Resources {
     var parsedJson = json.decode(jsonData);
     var meta = FlyerMeta(parsedJson);
     flyer.title = meta.title;
+    flyer.titleShort = meta.titleShort;
     flyer.url = meta.url;
   }
 
