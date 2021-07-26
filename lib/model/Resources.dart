@@ -18,7 +18,7 @@ class Resources {
 
   Resources._internal();
 
-  var flyers = new List.empty(growable: true);
+  var flyers = new List<Flyer>.empty(growable: true);
   var flyerMap = new HashMap<String, Flyer>();
 
   void init() {
@@ -35,6 +35,12 @@ class Resources {
 
       flyers.add(flyer);
       flyerMap[id] = flyer;
+    });
+
+    flyers.sort((a, b) => a.title.compareTo(b.title));
+
+    flyers.forEach((flyer) {
+      flyerMap[flyer.id] = flyer;
     });
   }
 
@@ -57,6 +63,7 @@ class Resources {
     "080",
     "090",
     "100",
+    "105",
     "110",
     "120",
     "130",
