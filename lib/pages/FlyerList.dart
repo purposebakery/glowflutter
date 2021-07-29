@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:glow/Common.dart';
+import 'package:glow/model/Flyer.dart';
 import 'package:glow/model/Resources.dart';
 import 'package:glow/pages/FlyerDetail.dart';
 import 'package:glow/utils/External.dart';
-
-import '../Common.dart';
+import 'package:glow/utils/Utils.dart';
 
 class FlyerListPage extends StatefulWidget {
   FlyerListPage({Key? key}) : super(key: key);
@@ -15,6 +16,8 @@ class FlyerListPage extends StatefulWidget {
 class FlyerListPageState extends State<FlyerListPage> {
   @override
   Widget build(BuildContext context) {
+    Utils.initializeDynamicSizes(context);
+
     return Scaffold(appBar: createAppBar(), drawer: createDrawer(), body: createBody());
   }
 
@@ -26,33 +29,46 @@ class FlyerListPageState extends State<FlyerListPage> {
   }
 
   Widget createBody() {
+    var displayWidth = Utils.getDisplaySizeWidth(context);
+    var spacing = Utils.SPACE1_D;
+    var flyerWidth = Utils.SPACE4_D * 2;
+    var horizontalCount = (displayWidth - spacing) / (flyerWidth + spacing);
+
     return GridView.count(
-      crossAxisCount: 2,
-      mainAxisSpacing: 24,
-      children: List.generate(Resources().flyers.length, (flyerIndex) {
-        return Center(
-          child: Card(
-              elevation: 12,
-              child: Stack(
-                children: <Widget>[
-                  Image.asset(resources.flyers[flyerIndex].cover),
-                  Positioned.fill(
-                      child: new Material(
-                          color: Colors.transparent,
-                          child: new InkWell(
-                            splashColor: CommonColors.primary.withAlpha(150),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FlyerDetailPage(resources.flyers[flyerIndex].id)),
-                              );
-                            },
-                          ))),
-                ],
-              )),
-        );
-      }),
+        padding: EdgeInsets.symmetric(vertical: spacing * 2),
+        crossAxisCount: horizontalCount.toInt(),
+        mainAxisSpacing: spacing * 2,
+        children: createFlyerList()
+    );
+  }
+
+  List<Widget> createFlyerList() {
+    return List.generate(Resources().flyers.length, (flyerIndex) {
+      return createFlyer(resources.flyers[flyerIndex]);
+    });
+  }
+
+  Widget createFlyer(Flyer flyer) {
+    return Center(
+      child: Card(
+          elevation: 12,
+          child: Stack(
+            children: <Widget>[
+              Image.asset(flyer.cover),
+              Positioned.fill(
+                  child: new Material(
+                      color: Colors.transparent,
+                      child: new InkWell(
+                        splashColor: CommonColors.primary.withAlpha(150),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FlyerDetailPage(flyer.id)),
+                          );
+                        },
+                      ))),
+            ],
+          )),
     );
   }
 

@@ -31,7 +31,7 @@ class Resources {
       flyer.content = "${CommonPaths.FLYER}${id}content.html";
       flyer.cover = "${CommonPaths.FLYER}${id}cover.png";
 
-      getFileData("${CommonPaths.FLYER}${id}meta.json").then((value) => parseJson(value, flyer));
+      Utils.getFileData("${CommonPaths.FLYER}${id}meta.json").then((value) => parseJson(value, flyer));
 
       flyers.add(flyer);
       flyerMap[id] = flyer;

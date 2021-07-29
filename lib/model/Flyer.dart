@@ -13,6 +13,6 @@ class Flyer {
   Flyer(this.id, this.title, this.titleShort, this.cover, this.content, this.url);
 
   Future<String> loadContent() {
-    return getFileData(content);
+    return Utils.getFileData(content);
   }
 }

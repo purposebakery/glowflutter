@@ -6,6 +6,7 @@ import 'package:flutter_html/html_parser.dart';
 import 'package:glow/model/Flyer.dart';
 import 'package:glow/model/Resources.dart';
 import 'package:glow/utils/External.dart';
+import 'package:glow/utils/Utils.dart';
 import 'package:html/dom.dart' as dom;
 
 import '../Common.dart';
@@ -26,6 +27,8 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    Utils.initializeDynamicSizes(context);
+
     return Scaffold(
         body: CustomScrollView(
           slivers: [
