@@ -43,12 +43,26 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
     return SliverAppBar(
       brightness: Brightness.dark,
       pinned: true,
+      actions: createAppBarActions(),
       expandedHeight: 160.0 * Utils.DYNAMIC_SCALE,
       flexibleSpace: FlexibleSpaceBar(
         title: createAppBarTitle(),
         background: createAppBarBackground(),
       ),
     );
+  }
+
+  List<Widget> createAppBarActions() {
+    return [
+      IconButton(
+        icon: Icon(CommonIconsDyn.share),
+        onPressed : onSharePressed,
+      ),
+    ];
+  }
+
+  void onSharePressed() {
+    External.shareText(flyer.url);
   }
 
   Widget createAppBarTitle() {
@@ -104,9 +118,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
         child: Html(
           data: html,
           style: {
-            "body": Style(
-              fontSize: FontSize(Utils.TEXT_MEDIUM_D)
-            ),
+            "body": Style(fontSize: FontSize(Utils.TEXT_MEDIUM_D)),
           },
           customImageRenders: getCustomImageRenders(),
           onLinkTap: (url, context, attributes, element) => External.launchURL(url),

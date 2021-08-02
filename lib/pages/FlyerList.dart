@@ -32,12 +32,14 @@ class FlyerListPageState extends State<FlyerListPage> {
     var displayWidth = Utils.getDisplaySizeWidth(context);
     var spacing = Utils.SPACE1_D;
     var flyerWidth = Utils.SPACE4_D * 2;
-    var horizontalCount = (displayWidth - spacing) / (flyerWidth + spacing);
+    var horizontalCount = (displayWidth - spacing) ~/ (flyerWidth + spacing);
+
+    flyerWidth = (displayWidth - (spacing + spacing * horizontalCount)) / horizontalCount;
 
     return GridView.count(
-        padding: EdgeInsets.symmetric(vertical: spacing * 2),
+        padding: EdgeInsets.symmetric(vertical: spacing),
         crossAxisCount: horizontalCount.toInt(),
-        mainAxisSpacing: spacing * 2,
+        mainAxisSpacing: Utils.SPACE2_D,
         children: createFlyerList()
     );
   }
@@ -74,7 +76,8 @@ class FlyerListPageState extends State<FlyerListPage> {
 
   Drawer createDrawer() {
     return Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+        child: ListView(
+            padding: EdgeInsets.zero, children: <Widget>[
       DrawerHeader(
           child: Image.asset("${CommonPaths.DA}glow_logo_vertical_white.png"),
           decoration: BoxDecoration(color: CommonColors.primary)),
@@ -116,13 +119,13 @@ class FlyerListPageState extends State<FlyerListPage> {
                       onTap: () {
                         External.launchURL(CommonStrings.email_uri);
                       },
-                      leading: Icon(CommonIconsDyn.mail, color: CommonColors.primary),
+                      leading: Icon(CommonIconsDyn.mail),
                       title: Text("E-Mail")),
                   ListTile(
                       onTap: () {
                         External.launchURL(CommonStrings.phone_uri);
                       },
-                      leading: Icon(CommonIconsDyn.phone, color: CommonColors.primary),
+                      leading: Icon(CommonIconsDyn.phone),
                       title: Text("Telefon")),
                 ],
               )

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CommonColors {
-  static const Color primary = Color(0xFF143945);
+  static const Color primary = Color(0xFF00333D);
 }
 
 class CommonStrings {
