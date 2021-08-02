@@ -43,7 +43,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
     return SliverAppBar(
       brightness: Brightness.dark,
       pinned: true,
-      expandedHeight: 160.0,
+      expandedHeight: 160.0 * Utils.DYNAMIC_SCALE,
       flexibleSpace: FlexibleSpaceBar(
         title: createAppBarTitle(),
         background: createAppBarBackground(),
@@ -53,9 +53,12 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   Widget createAppBarTitle() {
     var title = flyer.titleShort;
+    if (Utils.DYNAMIC_SCALE > 1.3) {
+      title = flyer.title;
+    }
     return Padding(
-        padding: EdgeInsets.only(left : CommonSpace.SPACE_1),
-        child: Text(title, style: TextStyle(fontSize: 16))
+        padding: EdgeInsets.only(left : Utils.SPACE1_D),
+        child: Text(title, style: TextStyle(fontSize: Utils.TEXT_LARGE_D))
     );
   }
 
@@ -97,9 +100,14 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   Widget getFlyerText(String html) {
     return Padding(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(Utils.SPACE1_D),
         child: Html(
           data: html,
+          style: {
+            "body": Style(
+              fontSize: FontSize(Utils.TEXT_MEDIUM_D)
+            ),
+          },
           customImageRenders: getCustomImageRenders(),
           onLinkTap: (url, context, attributes, element) => External.launchURL(url),
         ));
@@ -121,6 +129,6 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
     Map<String, String> attributes,
     dom.Element? element,
   ) {
-    return Padding(padding: EdgeInsets.all(24), child: new Image.asset("${CommonPaths.FLYER}${flyer.id}${attributes["src"]}"));
+    return Padding(padding: EdgeInsets.all(Utils.SPACE1_D), child: new Image.asset("${CommonPaths.FLYER}${flyer.id}${attributes["src"]}"));
   }
 }

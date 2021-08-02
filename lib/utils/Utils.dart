@@ -98,30 +98,53 @@ class Utils {
   static double ICON_MEDIUM_D = ICON_MEDIUM; // ignore: non_constant_identifier_names
   static double ICON_LARGE_D = ICON_LARGE; // ignore: non_constant_identifier_names
 
+  static double DYNAMIC_SCALE = 1.0; // ignore: non_constant_identifier_names
+  static double DYNAMIC_SCALE_CUBED = DYNAMIC_SCALE * DYNAMIC_SCALE; // ignore: non_constant_identifier_names
+
+  static const double TEXT_SMALL = 12;
+  static const double TEXT_MEDIUM = 14;
+  static const double TEXT_LARGE = 16;
+
+  static double TEXT_SMALL_D = TEXT_SMALL; // ignore: non_constant_identifier_names
+  static double TEXT_MEDIUM_D = TEXT_MEDIUM; // ignore: non_constant_identifier_names
+  static double TEXT_LARGE_D = TEXT_LARGE; // ignore: non_constant_identifier_names
+
+  static double lastShortestSide = -1;
+
   static void initializeDynamicSizes(BuildContext context) {
     var shortestSide = Utils.getDisplayShortestSide(context);
-    var dynamicScale = 1.0;
-    if (shortestSide <= 320) {
-      dynamicScale = 1.0;
-    } else if (shortestSide <= 480) {
-      dynamicScale = 1.1;
-    } else if (shortestSide <= 640) {
-      dynamicScale = 1.25;
-    } else if (shortestSide <= 800) {
-      dynamicScale = 1.45;
-    } else {
-      dynamicScale = 1.75;
+    if (lastShortestSide == shortestSide) {
+      return;
     }
+    lastShortestSide = shortestSide;
 
-    SPACE0_25_D = SPACE0_25 * dynamicScale;
-    SPACE0_5_D = SPACE0_5 * dynamicScale;
-    SPACE1_D = SPACE1 * dynamicScale;
-    SPACE2_D = SPACE2 * dynamicScale;
-    SPACE3_D = SPACE3 * dynamicScale;
-    SPACE4_D = SPACE4 * dynamicScale;
+    DYNAMIC_SCALE = 1.0;
+    if (shortestSide <= 320) {
+      DYNAMIC_SCALE = 1.0;
+    } else if (shortestSide <= 480) {
+      DYNAMIC_SCALE = 1.1;
+    } else if (shortestSide <= 640) {
+      DYNAMIC_SCALE = 1.25;
+    } else if (shortestSide <= 800) {
+      DYNAMIC_SCALE = 1.45;
+    } else {
+      DYNAMIC_SCALE = 1.75;
+    }
+    DYNAMIC_SCALE_CUBED = DYNAMIC_SCALE * DYNAMIC_SCALE;
 
-    ICON_SMALL_D = ICON_SMALL * dynamicScale;
-    ICON_MEDIUM_D = ICON_MEDIUM * dynamicScale;
-    ICON_LARGE_D = ICON_LARGE * dynamicScale;
+    SPACE0_25_D = SPACE0_25 * DYNAMIC_SCALE;
+    SPACE0_5_D = SPACE0_5 * DYNAMIC_SCALE;
+    SPACE1_D = SPACE1 * DYNAMIC_SCALE;
+    SPACE2_D = SPACE2 * DYNAMIC_SCALE;
+    SPACE3_D = SPACE3 * DYNAMIC_SCALE;
+    SPACE4_D = SPACE4 * DYNAMIC_SCALE;
+
+    ICON_SMALL_D = ICON_SMALL * DYNAMIC_SCALE;
+    ICON_MEDIUM_D = ICON_MEDIUM * DYNAMIC_SCALE;
+    ICON_LARGE_D = ICON_LARGE * DYNAMIC_SCALE;
+
+    TEXT_SMALL_D = TEXT_SMALL * DYNAMIC_SCALE;
+    TEXT_MEDIUM_D = TEXT_MEDIUM * DYNAMIC_SCALE;
+    TEXT_LARGE_D = TEXT_LARGE * DYNAMIC_SCALE;
   }
 }

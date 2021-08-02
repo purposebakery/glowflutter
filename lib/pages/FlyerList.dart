@@ -82,19 +82,26 @@ class FlyerListPageState extends State<FlyerListPage> {
           onTap: () {
             External.launchURL(CommonStrings.homepage_url);
           },
-          leading: Icon(CommonIconsDyn.home, color: CommonColors.primary),
+          leading: Icon(CommonIconsDyn.home),
           title: Text("Homepage")),
       ListTile(
           onTap: () {
             External.launchURL(CommonStrings.shop_url);
           },
-          leading: Icon(CommonIconsDyn.shop, color: CommonColors.primary),
+          leading: Icon(CommonIconsDyn.shop),
           title: Text("Shop")),
+      ListTile(
+          onTap: () {
+            External.shareText(CommonStrings.app_url);
+          },
+          leading: Icon(CommonIconsDyn.share),
+          title: Text("App Teilen")),
       Divider(color: Colors.grey),
       ListTile(
           onTap: () {
             showContact(context);
           },
+          leading: Icon(CommonIconsDyn.contact),
           title: Text("Kontakt")),
     ]));
   }
