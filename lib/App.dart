@@ -25,6 +25,7 @@ class App extends StatelessWidget {
           dialogBackgroundColor: Colors.grey.shade900,
           primaryColor: CommonColors.primary),
       home: FlyerListPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

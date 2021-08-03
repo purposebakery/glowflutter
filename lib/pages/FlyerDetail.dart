@@ -27,7 +27,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    Utils.initializeDynamicSizes(context);
+    Utils.initialize(context);
 
     return Scaffold(
         body: CustomScrollView(

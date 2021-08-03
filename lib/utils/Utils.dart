@@ -3,6 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class Utils {
+  static initialize(BuildContext context) {
+    _initializeDynamicSizes(context);
+    _initializeDarkTheme(context);
+  }
+
   /// ----------- ///
   /// DELAY UTILS ///
   /// ----------- ///
@@ -73,6 +78,16 @@ class Utils {
     return await rootBundle.loadString(path);
   }
 
+
+  /// ---------- ///
+  /// DARK THEME ///
+  /// ---------- ///
+  static bool DARK_THEME_ENABLED = false; // ignore: non_constant_identifier_names
+
+  static void _initializeDarkTheme(BuildContext context) {
+    DARK_THEME_ENABLED = MediaQuery.of(context).platformBrightness == Brightness.dark;
+  }
+
   /// ----- ///
   /// SIZES ///
   /// ----- ///
@@ -111,7 +126,7 @@ class Utils {
 
   static double lastShortestSide = -1;
 
-  static void initializeDynamicSizes(BuildContext context) {
+  static void _initializeDynamicSizes(BuildContext context) {
     var shortestSide = Utils.getDisplayShortestSide(context);
     if (lastShortestSide == shortestSide) {
       return;

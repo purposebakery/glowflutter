@@ -16,7 +16,7 @@ class FlyerListPage extends StatefulWidget {
 class FlyerListPageState extends State<FlyerListPage> {
   @override
   Widget build(BuildContext context) {
-    Utils.initializeDynamicSizes(context);
+    Utils.initialize(context);
 
     return Scaffold(appBar: createAppBar(), drawer: createDrawer(), body: createBody());
   }
@@ -85,26 +85,26 @@ class FlyerListPageState extends State<FlyerListPage> {
           onTap: () {
             External.launchURL(CommonStrings.homepage_url);
           },
-          leading: Icon(CommonIconsDyn.home),
+          leading: createDrawerIcon(CommonIconsDyn.home),
           title: Text("Homepage")),
       ListTile(
           onTap: () {
             External.launchURL(CommonStrings.shop_url);
           },
-          leading: Icon(CommonIconsDyn.shop),
+          leading: createDrawerIcon(CommonIconsDyn.shop),
           title: Text("Shop")),
       ListTile(
           onTap: () {
             External.shareText(CommonStrings.app_url);
           },
-          leading: Icon(CommonIconsDyn.share),
+          leading: createDrawerIcon(CommonIconsDyn.share),
           title: Text("App Teilen")),
-      Divider(color: Colors.grey),
+      Divider(color: getDrawerIconColor().withAlpha(150)),
       ListTile(
           onTap: () {
             showContact(context);
           },
-          leading: Icon(CommonIconsDyn.contact),
+          leading: createDrawerIcon(CommonIconsDyn.contact),
           title: Text("Kontakt")),
     ]));
   }
@@ -119,16 +119,28 @@ class FlyerListPageState extends State<FlyerListPage> {
                       onTap: () {
                         External.launchURL(CommonStrings.email_uri);
                       },
-                      leading: Icon(CommonIconsDyn.mail),
+                      leading: createDrawerIcon(CommonIconsDyn.mail),
                       title: Text("E-Mail")),
                   ListTile(
                       onTap: () {
                         External.launchURL(CommonStrings.phone_uri);
                       },
-                      leading: Icon(CommonIconsDyn.phone),
+                      leading: createDrawerIcon(CommonIconsDyn.phone),
                       title: Text("Telefon")),
                 ],
               )
             ]));
+  }
+
+  Icon createDrawerIcon(IconData iconData) {
+    return Icon(iconData, color: getDrawerIconColor());
+  }
+
+  Color getDrawerIconColor() {
+    if (Utils.DARK_THEME_ENABLED) {
+      return Colors.white;
+    } else {
+      return CommonColors.primary;
+    }
   }
 }
