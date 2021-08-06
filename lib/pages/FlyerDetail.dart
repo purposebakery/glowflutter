@@ -62,7 +62,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   }
 
   void onSharePressed() {
-    External.shareText(flyer.url);
+    External.shareText(context, flyer.url);
   }
 
   Widget createAppBarTitle() {
@@ -121,7 +121,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
             "body": Style(fontSize: FontSize(Utils.TEXT_MEDIUM_D)),
           },
           customImageRenders: getCustomImageRenders(),
-          onLinkTap: (url, context, attributes, element) => External.launchURL(url),
+          onLinkTap: (url, context, attributes, element) => External.launchURL(this.context, url),
         ));
   }
 

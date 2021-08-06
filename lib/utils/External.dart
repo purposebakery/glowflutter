@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_share_me/flutter_share_me.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:glow/utils/DialogUtils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class External {
-  static launchURL(String? url) async {
+  static launchURL(BuildContext context, String? url) async {
     if (url == null) {
       return;
     }
@@ -12,29 +12,31 @@ class External {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Fluttertoast.showToast(
-          msg: "Konnte $url nicht öffnen. Fehlt die App dafür?",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          backgroundColor: Colors.black87,
-          textColor: Colors.white,
-          timeInSecForIosWeb: 2);
+      DialogParameters parameters = DialogParameters();
+      parameters.title = "Oh nein...";
+      parameters.message = "Ich konnte \"${removePrefix(url)}\" nicht öffnen. Wahrscheinlich fehlt die App dafür.";
+      parameters.positiveButton = "Ok";
+      DialogUtils.showAlertDialog(context, parameters);
     }
   }
 
-  static shareText(String text) async {
-    FlutterShareMe().shareToSystem(msg: text).then(checkShareResult);
+  static shareText(BuildContext context, String text) async {
+    FlutterShareMe().shareToSystem(msg: text).then( (dynamic value) => checkShareResult(context, text, value));
   }
 
-  static checkShareResult(dynamic value) {
+  static checkShareResult(BuildContext context, String text, dynamic value) {
     if (value == "false") {
-      Fluttertoast.showToast(
-          msg: "Konnte text nicht teilen. Fehlt die App dafür?",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          backgroundColor: Colors.black87,
-          textColor: Colors.white,
-          timeInSecForIosWeb: 2);
+      DialogParameters parameters = DialogParameters();
+      parameters.title = "Oh nein...";
+      parameters.message = "Ich konnte \"${removePrefix(text)}\" nicht teilen. Wahrscheinlich fehlt die App dafür.";
+      parameters.positiveButton = "Ok";
+      DialogUtils.showAlertDialog(context, parameters);
     }
+  }
+  
+  static String removePrefix(String text) {
+    text = text.replaceAll("mailto:", "");
+    text = text.replaceAll("tel:", "");
+    return text;
   }
 }

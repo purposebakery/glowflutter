@@ -25,7 +25,7 @@ class FlyerListPageState extends State<FlyerListPage> {
     return AppBar(
         // status bar color
         brightness: Brightness.dark,
-        title: Text("Glow"));
+        title: Text("GLOW Deutschland"));
   }
 
   Widget createBody() {
@@ -83,19 +83,19 @@ class FlyerListPageState extends State<FlyerListPage> {
           decoration: BoxDecoration(color: CommonColors.primary)),
       ListTile(
           onTap: () {
-            External.launchURL(CommonStrings.homepage_url);
+            External.launchURL(context, CommonStrings.homepage_url);
           },
           leading: createDrawerIcon(CommonIconsDyn.home),
           title: Text("Homepage")),
       ListTile(
           onTap: () {
-            External.launchURL(CommonStrings.shop_url);
+            External.launchURL(context, CommonStrings.shop_url);
           },
           leading: createDrawerIcon(CommonIconsDyn.shop),
           title: Text("Shop")),
       ListTile(
           onTap: () {
-            External.shareText(CommonStrings.app_url);
+            External.shareText(context, CommonStrings.app_url);
           },
           leading: createDrawerIcon(CommonIconsDyn.share),
           title: Text("App Teilen")),
@@ -117,13 +117,13 @@ class FlyerListPageState extends State<FlyerListPage> {
                 children: <Widget>[
                   ListTile(
                       onTap: () {
-                        External.launchURL(CommonStrings.email_uri);
+                        External.launchURL(context, CommonStrings.email_uri);
                       },
                       leading: createDrawerIcon(CommonIconsDyn.mail),
                       title: Text("E-Mail")),
                   ListTile(
                       onTap: () {
-                        External.launchURL(CommonStrings.phone_uri);
+                        External.launchURL(context, CommonStrings.phone_uri);
                       },
                       leading: createDrawerIcon(CommonIconsDyn.phone),
                       title: Text("Telefon")),
