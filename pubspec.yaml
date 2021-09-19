@@ -11,7 +11,7 @@ description: Giving Light to Our World
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+1
+version: 5.0.0+50000
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -24,7 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
   url_launcher: ^6.0.6
-  flutter_share_me: ^0.10.1
+  flutter_share_me: ^0.11.0
   flutter_html: ^2.1.0
 
 dev_dependencies:

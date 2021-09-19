@@ -68,7 +68,9 @@ class FlyerListPageState extends State<FlyerListPage> {
                             MaterialPageRoute(builder: (context) => FlyerDetailPage(flyer.id)),
                           );
                         },
-                      ))),
+                      )
+                  )
+              ),
             ],
           )),
     );
