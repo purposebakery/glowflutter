@@ -1,10 +1,12 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/html_parser.dart';
 import 'package:glow/model/Flyer.dart';
 import 'package:glow/model/Resources.dart';
+import 'package:glow/storage/FavouriteStore.dart';
 import 'package:glow/utils/External.dart';
 import 'package:glow/utils/Utils.dart';
 import 'package:html/dom.dart' as dom;
@@ -41,7 +43,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   Widget createAppBar() {
     return SliverAppBar(
-      brightness: Brightness.dark,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       pinned: true,
       actions: createAppBarActions(),
       expandedHeight: 160.0 * Utils.DYNAMIC_SCALE,
@@ -53,12 +55,39 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   }
 
   List<Widget> createAppBarActions() {
-    return [
-      IconButton(
-        icon: Icon(CommonIconsDyn.share),
-        onPressed : onSharePressed,
-      ),
-    ];
+    List<Widget> actions = List.empty(growable: true);
+
+    actions.add(IconButton(
+      icon: Icon(CommonIconsDyn.share),
+      onPressed : onSharePressed,
+    ));
+
+    actions.add(FutureBuilder<bool>(
+        future: FavouriteStore.isFavourite(flyer.id),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData && snapshot.data != null && snapshot.data!) {
+            return IconButton(
+              icon: Icon(CommonIconsDyn.favouriteActivated),
+              onPressed : removeFromFavourites,
+            );
+          } else {
+            return IconButton(
+              icon: Icon(CommonIconsDyn.favouriteDeactivated),
+              onPressed : addToFavourites,
+            );
+
+          }
+        }));
+
+    return actions;
+  }
+
+  void removeFromFavourites() {
+    FavouriteStore.removeFavourite(flyer.id);
+  }
+
+  void addToFavourites() {
+    FavouriteStore.addFavourite(flyer.id);
   }
 
   void onSharePressed() {

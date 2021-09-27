@@ -29,4 +29,6 @@ class CommonIconsDyn {
   static IconData contact = Platform.isIOS ? CupertinoIcons.person : Icons.person;
   static IconData mail = Platform.isIOS ? CupertinoIcons.mail : Icons.mail;
   static IconData phone = Platform.isIOS ? CupertinoIcons.phone : Icons.phone;
+  static IconData favouriteDeactivated = Platform.isIOS ? CupertinoIcons.heart : Icons.favorite_outline;
+  static IconData favouriteActivated = Platform.isIOS ? CupertinoIcons.heart_fill : Icons.favorite;
 }

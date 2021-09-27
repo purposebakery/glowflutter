@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:glow/Common.dart';
 import 'package:glow/model/Flyer.dart';
 import 'package:glow/model/Resources.dart';
@@ -24,7 +25,7 @@ class FlyerListPageState extends State<FlyerListPage> {
   AppBar createAppBar() {
     return AppBar(
         // status bar color
-        brightness: Brightness.dark,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
         title: Text("GLOW Deutschland"));
   }
 
