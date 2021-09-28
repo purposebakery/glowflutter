@@ -4,6 +4,7 @@ import 'package:glow/Common.dart';
 import 'package:glow/model/Flyer.dart';
 import 'package:glow/model/Resources.dart';
 import 'package:glow/pages/FlyerDetail.dart';
+import 'package:glow/storage/FavouriteStore.dart';
 import 'package:glow/utils/External.dart';
 import 'package:glow/utils/Utils.dart';
 
@@ -24,8 +25,8 @@ class FlyerListPageState extends State<FlyerListPage> {
 
   AppBar createAppBar() {
     return AppBar(
-        // status bar color
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        backgroundColor: CommonColors.primary,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         title: Text("GLOW Deutschland"));
   }
 
@@ -52,28 +53,67 @@ class FlyerListPageState extends State<FlyerListPage> {
   }
 
   Widget createFlyer(Flyer flyer) {
-    return Center(
-      child: Card(
-          elevation: 12,
-          child: Stack(
-            children: <Widget>[
-              Image.asset(flyer.cover),
-              Positioned.fill(
-                  child: new Material(
-                      color: Colors.transparent,
-                      child: new InkWell(
-                        splashColor: CommonColors.primary.withAlpha(150),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => FlyerDetailPage(flyer.id)),
-                          );
-                        },
-                      )
-                  )
-              ),
-            ],
-          )),
+
+    return FutureBuilder<bool>(
+        future: FavouriteStore.isFavourite(flyer.id),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData && snapshot.data != null && snapshot.data!) {
+            var list = List<Widget>.empty(growable: true);
+            list.add(Image.asset(flyer.cover));
+            list.add(createFlyerFavourite());
+            list.add(createFlyerClickArea(flyer));
+
+            return Center(
+              child: Card(
+                  elevation: 12,
+                  child: Stack(
+                    children: list,
+                  )),
+            );
+          } else {
+            var list = List<Widget>.empty(growable: true);
+            list.add(Image.asset(flyer.cover));
+            list.add(createFlyerClickArea(flyer));
+
+            return Center(
+              child: Card(
+                  elevation: 12,
+                  child: Stack(
+                    children: list,
+                  )),
+            );
+          }
+        });
+
+  }
+
+  Widget createFlyerFavourite() {
+    return Positioned.fill(
+        child: Align(
+            alignment: Alignment.topRight,
+            child: Container(
+                padding: EdgeInsets.all(4),
+                color: Colors.white.withAlpha(150),
+                child: Icon(CommonIconsDyn.favouriteActivated, color: CommonColors.primary)
+            )
+        )
+    );
+  }
+
+  Widget createFlyerClickArea(Flyer flyer) {
+    return Positioned.fill(
+        child: new Material(
+            color: Colors.transparent,
+            child: new InkWell(
+              splashColor: CommonColors.primary.withAlpha(150),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => FlyerDetailPage(flyer.id)),
+                );
+              },
+            )
+        )
     );
   }
 

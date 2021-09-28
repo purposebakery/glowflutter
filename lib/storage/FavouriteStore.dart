@@ -25,14 +25,18 @@ class FavouriteStore {
 
   static Future<void> addFavourite(String favourite) async {
     var list = await getFavourites();
-    list.add(favourite);
-    storeFavourites(list);
+    var newList = List<String>.empty(growable: true);
+    newList.addAll(list);
+    newList.add(favourite);
+    storeFavourites(newList);
   }
 
   static Future<void> removeFavourite(String favourite) async {
     var list = await getFavourites();
-    list.remove(favourite);
-    storeFavourites(list);
+    var newList = List<String>.empty(growable: true);
+    newList.addAll(list);
+    newList.remove(favourite);
+    storeFavourites(newList);
   }
 
   static Future<void> storeFavourites(List<String> favourites) async {

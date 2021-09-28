@@ -43,7 +43,8 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
 
   Widget createAppBar() {
     return SliverAppBar(
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      backgroundColor: CommonColors.primary,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
       pinned: true,
       actions: createAppBarActions(),
       expandedHeight: 160.0 * Utils.DYNAMIC_SCALE,
@@ -83,11 +84,15 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   }
 
   void removeFromFavourites() {
-    FavouriteStore.removeFavourite(flyer.id);
+    setState(() {
+      FavouriteStore.removeFavourite(flyer.id);
+    });
   }
 
   void addToFavourites() {
-    FavouriteStore.addFavourite(flyer.id);
+    setState(() {
+      FavouriteStore.addFavourite(flyer.id);
+    });
   }
 
   void onSharePressed() {
