@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glow/Common.dart';
@@ -7,7 +9,6 @@ import 'package:glow/pages/FlyerDetail.dart';
 import 'package:glow/storage/FavouriteStore.dart';
 import 'package:glow/utils/External.dart';
 import 'package:glow/utils/Utils.dart';
-import 'dart:developer' as developer;
 
 class FlyerListPage extends StatefulWidget {
   FlyerListPage({Key? key}) : super(key: key);
@@ -17,11 +18,8 @@ class FlyerListPage extends StatefulWidget {
 }
 
 class FlyerListPageState extends State<FlyerListPage> {
-
   void reload() {
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -34,10 +32,10 @@ class FlyerListPageState extends State<FlyerListPage> {
 
   AppBar createAppBar() {
     return AppBar(
-        backgroundColor: CommonColors.primary,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: Text("GLOW Deutschland"),
-        actions: createAppBarActions(),
+      backgroundColor: CommonColors.primary,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+      title: Text("GLOW Deutschland"),
+      actions: createAppBarActions(),
     );
   }
 
@@ -46,7 +44,7 @@ class FlyerListPageState extends State<FlyerListPage> {
 
     actions.add(IconButton(
       icon: Icon(CommonIconsDyn.more),
-      onPressed : onMorePressed,
+      onPressed: onMorePressed,
     ));
 
     return actions;
@@ -56,18 +54,18 @@ class FlyerListPageState extends State<FlyerListPage> {
     showModalBottomSheet(
         context: context,
         builder: (context) => Wrap(children: <Widget>[
-          Column(
-            children: <Widget>[
-              ListTile(
-                  onTap: () {
-                    FavouriteStore.clearFavourites().then((value) => reload());
-                    Navigator.pop(context);
-                  },
-                  leading: createDrawerIcon(CommonIconsDyn.favouriteDeactivated),
-                  title: Text("Favoriten zurücksetzen")),
-            ],
-          )
-        ]));
+              Column(
+                children: <Widget>[
+                  ListTile(
+                      onTap: () {
+                        FavouriteStore.clearFavourites().then((value) => reload());
+                        Navigator.pop(context);
+                      },
+                      leading: createDrawerIcon(CommonIconsDyn.favouriteDeactivated),
+                      title: Text("Favoriten zurücksetzen")),
+                ],
+              )
+            ]));
   }
 
   Widget createBody() {
@@ -94,8 +92,7 @@ class FlyerListPageState extends State<FlyerListPage> {
         padding: EdgeInsets.symmetric(vertical: spacing),
         crossAxisCount: horizontalCount.toInt(),
         mainAxisSpacing: Utils.SPACE2_D,
-        children: createFlyerList(favourites)
-    );
+        children: createFlyerList(favourites));
   }
 
   List<Widget> createFlyerList(List<String> favourites) {
@@ -125,7 +122,6 @@ class FlyerListPageState extends State<FlyerListPage> {
   }
 
   Widget createFlyer(Flyer flyer, bool isFavourite) {
-
     return FutureBuilder<bool>(
         future: FavouriteStore.isFavourite(flyer.id),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -156,7 +152,6 @@ class FlyerListPageState extends State<FlyerListPage> {
             );
           }
         });
-
   }
 
   Widget createFlyerFavourite() {
@@ -166,10 +161,7 @@ class FlyerListPageState extends State<FlyerListPage> {
             child: Container(
                 padding: EdgeInsets.all(4),
                 color: Colors.white.withAlpha(150),
-                child: Icon(CommonIconsDyn.favouriteActivated, color: CommonColors.primary)
-            )
-        )
-    );
+                child: Icon(CommonIconsDyn.favouriteActivated, color: CommonColors.primary))));
   }
 
   Widget createFlyerClickArea(Flyer flyer) {
@@ -181,21 +173,20 @@ class FlyerListPageState extends State<FlyerListPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => FlyerDetailPage(flyer.id)
-                  ),
+                  MaterialPageRoute(builder: (context) => FlyerDetailPage(flyer.id)),
                 ).then((value) => reload());
               },
-            )
-        )
-    );
+            )));
   }
 
   Drawer createDrawer() {
-    return Drawer(
-        child: ListView(
-            padding: EdgeInsets.zero, children: <Widget>[
+    return Drawer(child: createDrawerMenu());
+  }
+
+  Widget createDrawerMenu() {
+    return ListView(padding: EdgeInsets.zero, children: <Widget>[
       DrawerHeader(
+          padding: EdgeInsets.zero,
           child: Image.asset("${CommonPaths.DA}glow_logo_vertical_white.png"),
           decoration: BoxDecoration(color: CommonColors.primary)),
       ListTile(
@@ -222,8 +213,8 @@ class FlyerListPageState extends State<FlyerListPage> {
             showContact(context);
           },
           leading: createDrawerIcon(CommonIconsDyn.contact),
-          title: Text("Kontakt")),
-    ]));
+          title: Text("Kontakt"))
+    ]);
   }
 
   void showContact(BuildContext context) {
