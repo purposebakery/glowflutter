@@ -27,6 +27,7 @@ dependencies:
   flutter_share_me: ^1.2.0
   flutter_html: ^2.1.2
   shared_preferences: ^2.0.8
+  package_info_plus: ^1.0.6
 
 dev_dependencies:
   flutter_launcher_icons:

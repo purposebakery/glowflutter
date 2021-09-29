@@ -9,6 +9,7 @@ import 'package:glow/pages/FlyerDetail.dart';
 import 'package:glow/storage/FavouriteStore.dart';
 import 'package:glow/utils/External.dart';
 import 'package:glow/utils/Utils.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class FlyerListPage extends StatefulWidget {
   FlyerListPage({Key? key}) : super(key: key);
@@ -18,6 +19,27 @@ class FlyerListPage extends StatefulWidget {
 }
 
 class FlyerListPageState extends State<FlyerListPage> {
+  PackageInfo _packageInfo = PackageInfo(
+    appName: '',
+    packageName: '',
+    version: '',
+    buildNumber: '',
+    buildSignature: '',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
+
   void reload() {
     setState(() {});
   }
@@ -186,9 +208,17 @@ class FlyerListPageState extends State<FlyerListPage> {
   Widget createDrawerMenu() {
     return ListView(padding: EdgeInsets.zero, children: <Widget>[
       DrawerHeader(
+        margin: EdgeInsets.zero,
           padding: EdgeInsets.zero,
           child: Image.asset("${CommonPaths.DA}glow_logo_vertical_white.png"),
-          decoration: BoxDecoration(color: CommonColors.primary)),
+          decoration: const BoxDecoration(color: CommonColors.primary)),
+      Container(
+          margin: const EdgeInsets.only(bottom: 8.0),
+          padding: const EdgeInsets.only(right: 16, bottom: 16),
+          decoration: const BoxDecoration(color: CommonColors.primary ),
+          child: Align(
+              alignment: Alignment.centerRight,
+              child: Text("Version " + _packageInfo.version, style: TextStyle(fontSize: 11, color: Colors.white)))),
       ListTile(
           onTap: () {
             External.launchURL(context, CommonStrings.homepage_url);
