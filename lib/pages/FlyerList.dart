@@ -7,6 +7,7 @@ import 'package:glow/pages/FlyerDetail.dart';
 import 'package:glow/storage/FavouriteStore.dart';
 import 'package:glow/utils/External.dart';
 import 'package:glow/utils/Utils.dart';
+import 'dart:developer' as developer;
 
 class FlyerListPage extends StatefulWidget {
   FlyerListPage({Key? key}) : super(key: key);
@@ -16,8 +17,16 @@ class FlyerListPage extends StatefulWidget {
 }
 
 class FlyerListPageState extends State<FlyerListPage> {
+
+  void reload() {
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    developer.log('FlyerListPage', name: 'build');
     Utils.initialize(context);
 
     return Scaffold(appBar: createAppBar(), drawer: createDrawer(), body: createBody());
@@ -27,10 +36,32 @@ class FlyerListPageState extends State<FlyerListPage> {
     return AppBar(
         backgroundColor: CommonColors.primary,
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: Text("GLOW Deutschland"));
+        title: Text("GLOW Deutschland"),
+        actions: createAppBarActions(),
+    );
+  }
+
+  List<Widget> createAppBarActions() {
+    List<Widget> actions = List.empty(growable: true);
+
+    // TODO
+
+    return actions;
   }
 
   Widget createBody() {
+    return FutureBuilder<List<String>>(
+        future: FavouriteStore.getFavourites(),
+        builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return createGrid(snapshot.data!);
+          } else {
+            return Container();
+          }
+        });
+  }
+
+  Widget createGrid(List<String> favourites) {
     var displayWidth = Utils.getDisplaySizeWidth(context);
     var spacing = Utils.SPACE1_D;
     var flyerWidth = Utils.SPACE4_D * 2;
@@ -42,17 +73,37 @@ class FlyerListPageState extends State<FlyerListPage> {
         padding: EdgeInsets.symmetric(vertical: spacing),
         crossAxisCount: horizontalCount.toInt(),
         mainAxisSpacing: Utils.SPACE2_D,
-        children: createFlyerList()
+        children: createFlyerList(favourites)
     );
   }
 
-  List<Widget> createFlyerList() {
-    return List.generate(Resources().flyers.length, (flyerIndex) {
-      return createFlyer(resources.flyers[flyerIndex]);
+  List<Widget> createFlyerList(List<String> favourites) {
+    List<Flyer> flyersFavourite = List.empty(growable: true);
+    List<Flyer> flyersNonFavourite = List.empty(growable: true);
+
+    Resources().flyers.forEach((flyer) {
+      var isFavourite = favourites.contains(flyer.id);
+      if (isFavourite) {
+        flyersFavourite.add(flyer);
+      } else {
+        flyersNonFavourite.add(flyer);
+      }
+    });
+
+    flyersFavourite.sort((a, b) => a.title.compareTo(b.title));
+    flyersNonFavourite.sort((a, b) => a.title.compareTo(b.title));
+
+    List<Flyer> sorted = List.empty(growable: true);
+    sorted.addAll(flyersFavourite);
+    sorted.addAll(flyersNonFavourite);
+
+    return List.generate(sorted.length, (flyerIndex) {
+      Flyer flyer = sorted[flyerIndex];
+      return createFlyer(flyer, favourites.contains(flyer.id));
     });
   }
 
-  Widget createFlyer(Flyer flyer) {
+  Widget createFlyer(Flyer flyer, bool isFavourite) {
 
     return FutureBuilder<bool>(
         future: FavouriteStore.isFavourite(flyer.id),
@@ -109,8 +160,10 @@ class FlyerListPageState extends State<FlyerListPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => FlyerDetailPage(flyer.id)),
-                );
+                  MaterialPageRoute(
+                      builder: (context) => FlyerDetailPage(flyer.id)
+                  ),
+                ).then((value) => reload());
               },
             )
         )

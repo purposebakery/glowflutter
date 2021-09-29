@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:developer' as developer;
 
 import 'package:glow/Common.dart';
 import 'package:glow/model/Flyer.dart';
@@ -22,6 +23,8 @@ class Resources {
   var flyerMap = new HashMap<String, Flyer>();
 
   void init() {
+    developer.log('Resources', name: 'init');
+
     flyers.clear();
     flyerMap.clear();
 

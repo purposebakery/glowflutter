@@ -1,10 +1,4 @@
 PODS:
-  - FacebookCore (0.9.0):
-    - FBSDKCoreKit (~> 5.0)
-  - FacebookShare (0.9.0):
-    - FacebookCore (~> 0.9.0)
-    - FBSDKCoreKit (~> 5.0)
-    - FBSDKShareKit (~> 5.0)
   - FBSDKCoreKit (5.15.1):
     - FBSDKCoreKit/Basics (= 5.15.1)
     - FBSDKCoreKit/Core (= 5.15.1)
@@ -17,7 +11,10 @@ PODS:
     - FBSDKCoreKit (~> 5.0)
   - Flutter (1.0.0)
   - flutter_share_me (0.0.1):
-    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKShareKit
+    - Flutter
+  - shared_preferences (0.0.1):
     - Flutter
   - url_launcher (0.0.1):
     - Flutter
@@ -31,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_share_me (from `.symlinks/plugins/flutter_share_me/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
   - wakelock (from `.symlinks/plugins/wakelock/ios`)
@@ -38,8 +36,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - FacebookCore
-    - FacebookShare
     - FBSDKCoreKit
     - FBSDKShareKit
 
@@ -48,6 +44,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_share_me:
     :path: ".symlinks/plugins/flutter_share_me/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
   video_player:
@@ -58,16 +56,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
-  FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKShareKit: 259737eab3cc807087374553abdf588b3096ba55
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_share_me: 908cbbb695723a87657fabb166d5ec28737d3ba8
-  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_share_me: 53e12ba3f220060893dbf242d29ec95cb2a4fb18
+  shared_preferences: 5033afbb22d372e15aff8ff766df9021b845f273
+  url_launcher: b6e016d912f04be9f5bf6e8e82dc599b7ba59649
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
-  webview_flutter: 9f491a9b5a66f2573946a389b2677987b0ff8c0b
+  webview_flutter: 3603125dfd3bcbc9d8d418c3f80aeecf331c068b
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
