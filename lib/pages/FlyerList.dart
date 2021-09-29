@@ -44,9 +44,30 @@ class FlyerListPageState extends State<FlyerListPage> {
   List<Widget> createAppBarActions() {
     List<Widget> actions = List.empty(growable: true);
 
-    // TODO
+    actions.add(IconButton(
+      icon: Icon(CommonIconsDyn.more),
+      onPressed : onMorePressed,
+    ));
 
     return actions;
+  }
+
+  void onMorePressed() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => Wrap(children: <Widget>[
+          Column(
+            children: <Widget>[
+              ListTile(
+                  onTap: () {
+                    FavouriteStore.clearFavourites().then((value) => reload());
+                    Navigator.pop(context);
+                  },
+                  leading: createDrawerIcon(CommonIconsDyn.favouriteDeactivated),
+                  title: Text("Favoriten zurücksetzen")),
+            ],
+          )
+        ]));
   }
 
   Widget createBody() {

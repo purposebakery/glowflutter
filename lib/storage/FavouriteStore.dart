@@ -31,6 +31,10 @@ class FavouriteStore {
     storeFavourites(newList);
   }
 
+  static Future<void> clearFavourites() async {
+    return storeFavourites(List<String>.empty());
+  }
+
   static Future<void> removeFavourite(String favourite) async {
     var list = await getFavourites();
     var newList = List<String>.empty(growable: true);

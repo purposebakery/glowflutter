@@ -26,6 +26,7 @@ class CommonIconsDyn {
   static IconData home = Platform.isIOS ? CupertinoIcons.home : Icons.home;
   static IconData shop = Platform.isIOS ? CupertinoIcons.shopping_cart : Icons.shopping_cart;
   static IconData share = Platform.isIOS ? CupertinoIcons.share : Icons.share;
+  static IconData more = Platform.isIOS ? CupertinoIcons.ellipsis_vertical : Icons.more_vert;
   static IconData contact = Platform.isIOS ? CupertinoIcons.person : Icons.person;
   static IconData mail = Platform.isIOS ? CupertinoIcons.mail : Icons.mail;
   static IconData phone = Platform.isIOS ? CupertinoIcons.phone : Icons.phone;
