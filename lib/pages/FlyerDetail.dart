@@ -58,11 +58,6 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   List<Widget> createAppBarActions() {
     List<Widget> actions = List.empty(growable: true);
 
-    actions.add(IconButton(
-      icon: Icon(CommonIconsDyn.share),
-      onPressed : onSharePressed,
-    ));
-
     actions.add(FutureBuilder<bool>(
         future: FavouriteStore.isFavourite(flyer.id),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -147,16 +142,34 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   }
 
   Widget getFlyerText(String html) {
-    return Padding(
-        padding: EdgeInsets.all(Utils.SPACE1_D),
-        child: Html(
-          data: html,
-          style: {
-            "body": Style(fontSize: FontSize(Utils.TEXT_MEDIUM_D)),
-          },
-          customImageRenders: getCustomImageRenders(),
-          onLinkTap: (url, context, attributes, element) => External.launchURL(this.context, url),
-        ));
+    return Column(
+      children: [
+        Padding(
+            padding: EdgeInsets.all(Utils.SPACE1_D),
+            child: Html(
+              data: html,
+              style: {
+                "body": Style(fontSize: FontSize(Utils.TEXT_MEDIUM_D)),
+              },
+              customImageRenders: getCustomImageRenders(),
+              onLinkTap: (url, context, attributes, element) => External.launchURL(this.context, url),
+            )
+        ),
+        Padding(
+          padding: EdgeInsets.only(bottom : Utils.SPACE1_D),
+          child: ElevatedButton(
+              child: Padding(
+                padding: EdgeInsets.only(left : Utils.SPACE1_D, right : Utils.SPACE1_D),
+                child: Text("Teilen"),
+              ),
+              onPressed: onSharePressed,
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(CommonColors.primary),
+              )
+          ),
+        )
+      ],
+    );
   }
 
   Map<ImageSourceMatcher, ImageRender> getCustomImageRenders() {

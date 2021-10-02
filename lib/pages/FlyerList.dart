@@ -27,10 +27,13 @@ class FlyerListPageState extends State<FlyerListPage> {
     buildSignature: '',
   );
 
+  List<String> favourites = List.empty(growable : true);
+
   @override
   void initState() {
     super.initState();
     _initPackageInfo();
+    _initFavouriteList();
   }
 
   Future<void> _initPackageInfo() async {
@@ -40,8 +43,17 @@ class FlyerListPageState extends State<FlyerListPage> {
     });
   }
 
+  Future<void> _initFavouriteList() async {
+    final favouritesTemp = await FavouriteStore.getFavourites();
+    developer.log('FlyerListPage', name: favouritesTemp.toString());
+    setState(() {
+      favourites.clear();
+      favourites.addAll(favouritesTemp);
+    });
+  }
+
   void reload() {
-    setState(() {});
+    _initFavouriteList();
   }
 
   @override
@@ -64,10 +76,12 @@ class FlyerListPageState extends State<FlyerListPage> {
   List<Widget> createAppBarActions() {
     List<Widget> actions = List.empty(growable: true);
 
-    actions.add(IconButton(
-      icon: Icon(CommonIconsDyn.more),
-      onPressed: onMorePressed,
-    ));
+    if (favourites.isNotEmpty) {
+      actions.add(IconButton(
+        icon: Icon(CommonIconsDyn.more),
+        onPressed: onMorePressed,
+      ));
+    }
 
     return actions;
   }
@@ -80,7 +94,7 @@ class FlyerListPageState extends State<FlyerListPage> {
                 children: <Widget>[
                   ListTile(
                       onTap: () {
-                        FavouriteStore.clearFavourites().then((value) => reload());
+                        FavouriteStore.clearFavourites().then((value) => _initFavouriteList());
                         Navigator.pop(context);
                       },
                       leading: createDrawerIcon(CommonIconsDyn.favouriteDeactivated),
