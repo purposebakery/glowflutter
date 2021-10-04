@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:developer' as developer;
+import 'dart:io';
 
 import 'package:glow/Common.dart';
 import 'package:glow/model/Flyer.dart';
@@ -28,6 +29,48 @@ class Resources {
     flyers.clear();
     flyerMap.clear();
 
+    var flyerIds = [
+      "010", // COVID19
+      "020",
+      "030",
+      "040",
+      "050",
+      "060",
+      "070",
+      "080",
+      "090",
+      "100",
+      "105",
+      "110",
+      "120",
+      "130",
+      "140",
+      "150",
+      "160",
+      "170",
+      "180",
+      "190",
+      "200",
+      "210",
+      "220",
+      "230",
+      "240",
+      "250",
+      "260",
+      //"270", // Twilight
+      "280",
+      "290",
+      "300",
+      "310",
+      "320",
+      "330",
+      "340"
+    ];
+
+    if (Platform.isIOS) {
+      flyerIds.remove("010"); // COVID19
+    }
+
     flyerIds.forEach((id) {
       var flyer = Flyer.empty();
       flyer.id = id;
@@ -54,42 +97,4 @@ class Resources {
     flyer.titleShort = meta.titleShort;
     flyer.url = meta.url;
   }
-
-  var flyerIds = [
-    "010",
-    "020",
-    "030",
-    "040",
-    "050",
-    "060",
-    "070",
-    "080",
-    "090",
-    "100",
-    "105",
-    "110",
-    "120",
-    "130",
-    "140",
-    "150",
-    "160",
-    "170",
-    "180",
-    "190",
-    "200",
-    "210",
-    "220",
-    "230",
-    "240",
-    "250",
-    "260",
-    //"270", // Twilight
-    "280",
-    "290",
-    "300",
-    "310",
-    "320",
-    "330",
-    "340"
-  ];
 }
