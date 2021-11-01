@@ -64,7 +64,10 @@ class Resources {
       "310",
       "320",
       "330",
-      "340"
+      "340",
+      "350", // Medien und das Gehirn
+      "360", // TODO Gibt es Geister wirklich
+      "370" // TODO Aufruf der liebe
     ];
 
     if (Platform.isIOS) {
