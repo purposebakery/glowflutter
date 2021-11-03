@@ -119,7 +119,7 @@ class FlyerListPageState extends State<FlyerListPage> {
   Widget createGrid(List<String> favourites) {
     var displayWidth = Utils.getDisplaySizeWidth(context);
     var spacing = Utils.SPACE1_D;
-    var flyerWidth = Utils.SPACE4_D * 2;
+    var flyerWidth = Utils.SPACE4 * 2;
     var horizontalCount = (displayWidth - spacing) ~/ (flyerWidth + spacing);
 
     flyerWidth = (displayWidth - (spacing + spacing * horizontalCount)) / horizontalCount;
@@ -257,7 +257,7 @@ class FlyerListPageState extends State<FlyerListPage> {
           padding: const EdgeInsets.only(right: 16, bottom: 16),
           child: Align(
               alignment: Alignment.centerRight,
-              child: Text("Version " + _packageInfo.version, style: TextStyle(fontSize: 11, color: CommonColors.primary)))),
+              child: Text("Version " + _packageInfo.version, style: TextStyle(fontSize: 11)))),
 
 
     ]);

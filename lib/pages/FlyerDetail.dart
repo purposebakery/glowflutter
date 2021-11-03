@@ -48,7 +48,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
       systemOverlayStyle: SystemUiOverlayStyle.light,
       pinned: true,
       actions: createAppBarActions(),
-      expandedHeight: 160.0 * Utils.DYNAMIC_SCALE,
+      expandedHeight: 250,
       flexibleSpace: FlexibleSpaceBar(
         title: createAppBarTitle(),
         background: createAppBarBackground(),
@@ -101,8 +101,8 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
         title = flyer.titleShort;
     }
     return Padding(
-        padding: EdgeInsets.only(left : Utils.SPACE1_D),
-        child: Text(title, style: TextStyle(fontSize: Utils.TEXT_LARGE_D))
+        padding: EdgeInsets.only(right : Utils.SPACE3_D),
+        child: Text(title, style: TextStyle(fontSize: Utils.TEXT_MEDIUM_D))
     );
   }
 
@@ -110,7 +110,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
     var cover = flyer.cover;
     return ColorFiltered(
       colorFilter: ColorFilter.mode(
-        Colors.grey.withAlpha(150),
+        Colors.grey.withAlpha(100),
         BlendMode.dstATop,
       ),
       child: Image.asset(cover, fit: BoxFit.fitWidth),
@@ -150,7 +150,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
             child: Html(
               data: html,
               style: {
-                "body": Style(fontSize: FontSize(Utils.TEXT_MEDIUM_D)),
+                "body": Style(fontSize: FontSize(Utils.TEXT_MEDIUM)),
               },
               customImageRenders: getCustomImageRenders(),
               onLinkTap: (url, context, attributes, element) => External.launchURL(this.context, url),
