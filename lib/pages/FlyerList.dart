@@ -226,13 +226,7 @@ class FlyerListPageState extends State<FlyerListPage> {
           padding: EdgeInsets.zero,
           child: Image.asset("${CommonPaths.DA}glow_logo_vertical_white.png"),
           decoration: const BoxDecoration(color: CommonColors.primary)),
-      Container(
-          margin: const EdgeInsets.only(bottom: 8.0),
-          padding: const EdgeInsets.only(right: 16, bottom: 16),
-          decoration: const BoxDecoration(color: CommonColors.primary ),
-          child: Align(
-              alignment: Alignment.centerRight,
-              child: Text("Version " + _packageInfo.version, style: TextStyle(fontSize: 11, color: Colors.white)))),
+
       ListTile(
           onTap: () {
             External.launchURL(context, CommonStrings.homepage_url);
@@ -251,13 +245,21 @@ class FlyerListPageState extends State<FlyerListPage> {
           },
           leading: createDrawerIcon(CommonIconsDyn.share),
           title: Text("App Teilen")),
-      Divider(color: getDrawerIconColor().withAlpha(150)),
       ListTile(
           onTap: () {
             showContact(context);
           },
           leading: createDrawerIcon(CommonIconsDyn.contact),
-          title: Text("Kontakt"))
+          title: Text("Kontakt")),
+      Divider(color: getDrawerIconColor().withAlpha(150)),
+      Container(
+          margin: const EdgeInsets.only(bottom: 8.0, top:8),
+          padding: const EdgeInsets.only(right: 16, bottom: 16),
+          child: Align(
+              alignment: Alignment.centerRight,
+              child: Text("Version " + _packageInfo.version, style: TextStyle(fontSize: 11, color: CommonColors.primary)))),
+
+
     ]);
   }
 

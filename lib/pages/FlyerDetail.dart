@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -95,9 +96,9 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   }
 
   Widget createAppBarTitle() {
-    var title = flyer.titleShort;
-    if (Utils.DYNAMIC_SCALE > 1.3) {
-      title = flyer.title;
+    var title = flyer.title;
+    if (Platform.isIOS && Utils.DYNAMIC_SCALE <= 1.3) {
+        title = flyer.titleShort;
     }
     return Padding(
         padding: EdgeInsets.only(left : Utils.SPACE1_D),
