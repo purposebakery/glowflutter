@@ -197,7 +197,7 @@ class FlyerListPageState extends State<FlyerListPage> {
             child: Container(
                 padding: EdgeInsets.all(4),
                 color: Colors.white.withAlpha(150),
-                child: Icon(CommonIconsDyn.favouriteActivated, color: CommonColors.primary))));
+                child: Icon(CommonIconsDyn.favouriteActivated, color: CommonColors.red))));
   }
 
   Widget createFlyerClickArea(Flyer flyer) {

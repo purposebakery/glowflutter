@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 
 class CommonColors {
   static const Color primary = Color(0xFF00333D);
+  static const Color red = Colors.red;
 }
 
 class CommonStrings {
