@@ -46,17 +46,20 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   Widget build(BuildContext context) {
     Utils.initialize(context);
 
-    return Stack(
-      children: <Widget>[
-        CustomScrollView(
-          controller: scrollController,
-          slivers: [
-            createAppBar(),
-            createContent(),
-          ],
-        ),
-        createFab(),
-      ],
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              createAppBar(),
+              createContent(),
+            ],
+          ),
+          Align(
+              child: createFab()),
+        ],
+      ),
     );
     /*
     return Scaffold(
@@ -176,7 +179,7 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
   }
 
   Widget getContent(String html) {
-    return SingleChildScrollView(child: getFlyerText(html));
+    return getFlyerText(html);
   }
 
   Widget getFlyerText(String html) {
@@ -187,6 +190,14 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
             child: Html(
               data: html,
               style: {
+                /*
+                "a": Style(
+                    textDecoration : TextDecoration.underline,
+                    textDecorationColor: CommonColors.primary,
+                    textDecorationStyle: TextDecorationStyle.solid,
+                    color : CommonColors.primary,
+                    fontSize: FontSize(Utils.TEXT_MEDIUM)
+                ),*/
                 "body": Style(fontSize: FontSize(Utils.TEXT_MEDIUM)),
               },
               customImageRenders: getCustomImageRenders(),
@@ -269,8 +280,8 @@ class FlyerDetailPageState extends State<FlyerDetailPage> {
           onPressed: () =>
               Scaffold.of(context).showSnackBar(
                   SnackBar(content: Text("You clicked FAB!"))),
-          backgroundColor: CommonColors.red,
-          child: Icon(Icons.favorite),
+          backgroundColor: CommonColors.white,
+          child: Icon(Icons.favorite, color: CommonColors.red,),
         ),
       ),
     );
